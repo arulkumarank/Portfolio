@@ -9,7 +9,9 @@ export default function Resume() {
     "https://drive.google.com/uc?export=download&id=1sZivzh5ASASmZpI-KkRrrOCfGdF_GpiL";
 
   const handleDownload = () => {
-    window.open(resumeDownloadUrl, "_blank");
+    if (typeof window !== "undefined") {
+      window.open(resumeDownloadUrl, "_blank");
+    }
   };
 
   return (
@@ -25,19 +27,18 @@ export default function Resume() {
         </h2>
 
         <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-          View my resume below or download a copy for your reference.
+          You can view my resume below. Use the download button if needed.
         </p>
 
-        {/* Resume Preview */}
         <div className="w-full h-[75vh] rounded-2xl overflow-hidden border border-white/10 bg-black/30 backdrop-blur-md mb-10">
-          <iframe
-            src={resumeViewUrl}
-            className="w-full h-full"
-            allow="autoplay"
-          />
+          {typeof window !== "undefined" && (
+            <iframe
+              src={resumeViewUrl}
+              className="w-full h-full"
+            />
+          )}
         </div>
 
-        {/* Download Button */}
         <button
           onClick={handleDownload}
           className="group px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 rounded-full font-semibold hover:shadow-lg hover:shadow-orange-500/50 transition-all duration-300 hover:scale-105 flex items-center gap-3 mx-auto"
