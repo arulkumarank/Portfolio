@@ -20,11 +20,14 @@ export const aboutMe = {
 
 
 export const skills = [
-  { name: "Python", level: 80, icon: "Terminal" },
+  { name: "Python", level: 85, icon: "Terminal" },
   { name: "Java", level: 80, icon: "Coffee" },
-  { name: "C", level: 90, icon: "Code" },
-  { name: "Embedded C", level: 85, icon: "Cpu" },
+  { name: "JavaScript", level: 78, icon: "Code" },
+  { name: "C", level: 90, icon: "Cpu" },
+  { name: "React", level: 76, icon: "Layers" },
+  { name: "Backend APIs", level: 82, icon: "Server" },
 ];
+
 
 export const projects = [
   {
@@ -34,6 +37,14 @@ export const projects = [
     tech: ["React", "Node.js", "MySQL", "REST API"],
     color: "from-cyan-500 to-blue-600",
     // link: "https://github.com/arulkumarank/industry-management"
+  },
+  {
+  title: "SmartDine – Smart Food Discovery App",
+  category: "Mobile & Web Application",
+  description: "An AI-powered food discovery platform that helps users find restaurants and dishes based on taste, mood, and preferences, with smart search, recommendations, and map-based navigation.",
+  tech: ["React Native", "FastAPI", "MongoDB", "Node.js", "AI APIs"],
+  color: "from-orange-500 to-red-600",
+  link: "https://github.com/arulkumarank/SmartDineMobile"
   },
   {
     title: "Object Detection & Counting System",
@@ -50,6 +61,14 @@ export const projects = [
     tech: ["JavaScript", "Node.js", "HTML", "CSS"],
     color: "from-green-500 to-emerald-600",
     link: "https://github.com/arulkumarank/smart-queue-management.git"
+  },
+  {
+  title: "Event Management & Resource Allocation System",
+  category: "Web Application",
+  description: "A web-based system for managing events and allocating resources efficiently, featuring CRUD operations, conflict detection, real-time validation, and utilization reporting.",
+  tech: ["Python", "Flask", "SQLite", "HTML", "CSS"],
+  color: "from-blue-500 to-indigo-600",
+  link: "https://github.com/arulkumarank/Event-Management-and-Resource-Allocation-System"
   },
   {
     title: "Autonomous Car using Arduino",
