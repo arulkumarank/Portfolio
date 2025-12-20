@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code, Cpu, Wifi, Terminal, Coffee } from 'lucide-react';
+import { Code, Cpu, Wifi, Terminal, Coffee, Layers, Server } from 'lucide-react';
 import { aboutMe, skills } from '../data/portfolioData';
 
 const iconMap = {
@@ -7,7 +7,9 @@ const iconMap = {
   Wifi: Wifi,
   Code: Code,
   Terminal: Terminal,
-  Coffee: Coffee
+  Coffee: Coffee,
+  Layers: Layers,
+  Server: Server
 };
 
 export default function About() {
@@ -19,7 +21,7 @@ export default function About() {
             About Me
           </span>
         </h2>
-        
+
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             {aboutMe.bio.map((paragraph, idx) => (
@@ -27,7 +29,7 @@ export default function About() {
                 {paragraph}
               </p>
             ))}
-            
+
             <div className="pt-6 space-y-4">
               {skills.map((skill, idx) => {
                 const Icon = iconMap[skill.icon];
@@ -43,7 +45,7 @@ export default function About() {
                       <span className="text-gray-400">{skill.level}%</span>
                     </div>
                     <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                      <div 
+                      <div
                         className="h-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${skill.level}%` }}
                       />
@@ -61,7 +63,7 @@ export default function About() {
                   {aboutMe.stats.experience}
                 </div>
                 <div className="text-xl text-gray-300">Years of Experience</div>
-                
+
                 <div className="relative">
                   <div className="text-center">
                     <div className="text-3xl font-bold text-cyan-400">{aboutMe.stats.projects}</div>

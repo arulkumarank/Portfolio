@@ -19,20 +19,20 @@ export default function Projects() {
               className="group relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 overflow-hidden hover:border-white/30 transition-all duration-500 hover:scale-105"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${project.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
-              
+
               <div className="relative p-6 space-y-4">
                 <div className="text-sm text-gray-400 font-semibold uppercase tracking-wider">
                   {project.category}
                 </div>
-                
+
                 <h3 className="text-2xl font-bold group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:to-purple-500 group-hover:bg-clip-text transition-all duration-300">
                   {project.title}
                 </h3>
-                
+
                 <p className="text-gray-400 leading-relaxed">
                   {project.description}
                 </p>
-                
+
                 <div className="flex flex-wrap gap-2 pt-4">
                   {project.tech.map((tech, i) => (
                     <span
@@ -43,13 +43,17 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
-                
-                <a 
-                  href={project.link}
-                  className="flex items-center gap-2 text-cyan-400 hover:gap-4 transition-all duration-300 pt-4"
-                >
-                  View Project <ExternalLink className="w-4 h-4" />
-                </a>
+
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-cyan-400 hover:gap-4 transition-all duration-300 pt-4"
+                  >
+                    View Project <ExternalLink className="w-4 h-4" />
+                  </a>
+                )}
               </div>
             </div>
           ))}
