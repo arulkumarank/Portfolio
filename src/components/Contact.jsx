@@ -16,10 +16,14 @@ export default function Contact() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm(
+    emailjs.send(
       'service_xfsl2zg',
       'template_suqlnli',
-      form.current,
+      {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message
+      },
       'od-R_yrbC55_cDu3P'
     ).then(
       () => {
