@@ -2,7 +2,7 @@ export const personalInfo = {
   name: "ARULKUMARAN K",
   title: "Software Developer & IoT System Designer",
   tagline: "I'm ARULKUMARAN K",
-  description: "Crafting interconnected systems where hardware meets software, and data transforms into intelligent action.",
+  description: "I’m a Software Engineer interested in building reliable software and intelligent systems. I enjoy combining software with real-world technologies to create practical solutions.",
   email: "arulkumaran187@gmail.com",
   github: "https://github.com/arulkumarank",
   linkedin: "https://linkedin.com/in/arulkumarank"
@@ -10,7 +10,7 @@ export const personalInfo = {
 
 export const aboutMe = {
   bio: [
-    "A motivated Electronics and Communication student transitioning into software engineering with hands-on experience building full-stack web apps and AI prototypes. I enjoy designing end-to-end solutions — from APIs and databases to responsive frontends and model integrations.",
+    "Electronics and Communication student transitioning into software engineering with experience in full-stack development and AI prototypes. Enjoy building end-to-end solutions from backend APIs to responsive user interfaces.",
   ],
   stats: {
     experience: "Fresher",
@@ -23,9 +23,9 @@ export const skills = [
   { name: "Python", level: 85, icon: "Terminal" },
   { name: "Java", level: 80, icon: "Coffee" },
   { name: "JavaScript", level: 78, icon: "Code" },
-  { name: "C", level: 90, icon: "Cpu" },
+  { name: "C Programming", level: 90, icon: "Cpu" },
   { name: "React", level: 76, icon: "Layers" },
-  { name: "Backend APIs", level: 82, icon: "Server" },
+  { name: "Backend Development", level: 82, icon: "Server" },
 ];
 
 
@@ -45,6 +45,21 @@ export const projects = [
   tech: ["React Native", "FastAPI", "MongoDB", "Node.js", "AI APIs"],
   color: "from-orange-500 to-red-600",
   link: "https://github.com/arulkumarank/SmartDineMobile"
+  },
+  {
+    title: "Frappe-based Event Management System",
+    category: "ERP Web Application",
+    description: "Developed an event management and resource allocation system using the Frappe framework with scheduling, conflict detection, and role-based access for efficient event coordination.",
+    tech: ["Frappe Framework", "Python", "MariaDB", "JavaScript"],
+    color: "from-teal-500 to-cyan-600",
+    // link: "https://github.com/arulkumarank"
+  },
+  {
+    title: "Footstep Power Generation using Piezoelectric Tiles",
+    category: "Energy Harvesting System",
+    description: "Designed a piezoelectric energy harvesting tile with a spring-loaded hammer mechanism to convert human footsteps into electrical energy for low-power applications.",
+    tech: ["Piezoelectric Sensors", "Energy Harvesting", "Embedded Systems", "Hardware Design"],
+    color: "from-amber-500 to-orange-600",
   },
   {
     title: "Object Detection & Counting System",
