@@ -6,6 +6,8 @@ import { personalInfo } from '../data/portfolioData';
 export default function Contact() {
 
   const form = useRef();
+  const [isLoading, setIsLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -13,28 +15,67 @@ export default function Contact() {
     message: ''
   });
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const sendEmailWithRetry = async (templateParams, retryCount = 0, maxRetries = 3) => {
+    const delay = Math.pow(2, retryCount) * 1000; // Exponential backoff: 1s, 2s, 4s
+    
+    if (retryCount > 0) {
+      console.log(`Retrying email send (attempt ${retryCount}/${maxRetries}) after ${delay}ms`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
 
-    emailjs.send(
-      'service_xfsl2zg',
-      'template_suqlnli',
-      {
+    try {
+      const response = await emailjs.send(
+        'service_xfsl2zg',
+        'template_suqlnli',
+        templateParams,
+        'od-R_yrbC55_cDu3P'
+      );
+
+      console.log('Email sent successfully:', response);
+      return response;
+    } catch (error) {
+      console.error(`Email send attempt ${retryCount + 1} failed:`, error);
+
+      if (retryCount < maxRetries) {
+        console.log(`Scheduling retry ${retryCount + 1}...`);
+        return sendEmailWithRetry(templateParams, retryCount + 1, maxRetries);
+      }
+
+      throw new Error(
+        error.status === 0 
+          ? 'Network error - please check your internet connection' 
+          : `EmailJS error: ${error.text || error.message || 'Unknown error'}. Status: ${error.status}`
+      );
+    }
+  };
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+    
+    if (isLoading) return;
+
+    setIsLoading(true);
+    setStatusMessage('Sending...');
+
+    try {
+      await sendEmailWithRetry({
         name: formData.name,
         email: formData.email,
         message: formData.message
-      },
-      'od-R_yrbC55_cDu3P'
-    ).then(
-      () => {
-        alert("Message sent successfully!");
-        setFormData({ name: '', email: '', message: '' });
-      },
-      (error) => {
-        alert("Failed to send message");
-        console.error(error);
-      }
-    );
+      });
+
+      setStatusMessage('✓ Message sent successfully!');
+      setFormData({ name: '', email: '', message: '' });
+      
+      setTimeout(() => setStatusMessage(''), 5000);
+    } catch (error) {
+      console.error('Failed to send message after retries:', error);
+      setStatusMessage(`✗ ${error.message}`);
+      
+      setTimeout(() => setStatusMessage(''), 7000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -119,10 +160,21 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="w-full px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-semibold hover:scale-105 transition"
+              disabled={isLoading}
+              className="w-full px-8 py-4 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl font-semibold hover:scale-105 transition disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Send Message
+              {isLoading ? 'Sending...' : 'Send Message'}
             </button>
+
+            {statusMessage && (
+              <div className={`px-6 py-4 rounded-xl border backdrop-blur-sm animate-fadeIn ${
+                statusMessage.includes('✓') 
+                  ? 'bg-gradient-to-r from-green-500/20 to-emerald-500/20 border-green-500/50 text-green-300' 
+                  : 'bg-gradient-to-r from-red-500/20 to-rose-500/20 border-red-500/50 text-red-300'
+              }`}>
+                <p className="font-semibold text-center">{statusMessage}</p>
+              </div>
+            )}
 
           </form>
         </div>
